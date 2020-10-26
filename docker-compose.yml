@@ -1,0 +1,46 @@
+version: "3.7"
+
+services:
+  mysql:
+    image: mysql:5.7
+    environment: 
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: comments
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '.9'
+          memory: 100M
+        reservations:
+          cpus: '0.25'
+          memory: 20M
+  app:
+    depends_on:
+      - mysql
+    image: node:12-alpine      
+    ports:
+      - 3000:3000
+    working_dir: /dockerkommentar
+    volumes:
+      - ./:/dockerkommentar
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
+      MYSQL_DB: comments
+    command: ["npm", "start"]
+    deploy:
+      mode: replicated 
+      replicas: 2
+      restart_policy:
+        condition: any
+      resources:
+        limits:
+          cpus: '.5'
+          memory: 30M
+        reservations:
+          memory: 20M

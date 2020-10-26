@@ -1,0 +1,8 @@
+{
+    "appService.deploySubpath": "",
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/78d57905-5a01-4524-8e00-c722d329444f/resourceGroups/TravelAdventure/providers/Microsoft.Web/sites/traveladventure"
+}

@@ -1,0 +1,19 @@
+<article>
+    <p>Welcome to the comment section</p>
+    <div id="commentsection">
+
+            <ng-container *ngFor="let c of comments">
+                <div>
+                <h3> {{ c.Person }} </h3>
+                <p> {{ c.Text }} </p>
+        </div>
+    </ng-container>
+    <form #f="ngForm" (ngSubmit)="addComment(f)">
+        <p>Namn</p>
+        <input type="text" name="name" value="Insert your name" ngModel required>
+        <p>Kommentar</p>
+        <textarea rows="4" cols="50" type="text" name="text" value="Insert your comment" ngModel required> </textarea>
+        <button>Lägg till kommentar</button>
+    </form>
+    </div>
+</article>
